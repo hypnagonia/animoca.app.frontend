@@ -69,7 +69,7 @@ export class TokenList extends StoreConstructor {
   @observable formData = this.defaultDormData;
 
   boxes = [
-    { id: "3", total: 60, allow: 20, price: 250 }
+    { id: "3", total: 100, allow: 2, price: 100 }
     // { id: '2', total: 60, allow: 20, price: 200 },
     // { id: '3', total: 25, allow: 5, price: 300 },
     // { id: '4', total: 5, allow: 5, price: 400 },

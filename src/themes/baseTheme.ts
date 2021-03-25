@@ -261,7 +261,7 @@ export const baseTheme: any = {
     colors: {
       colorPrimary: palette.Purple500,
       colorSecondary: 'white',
-      buttonBgColor: '#2330D0',
+      buttonBgColor: '#621bce',
       // buttonBgColor: '#1c2a5e',
       // buttonBgColor: '#03ade8',
       buttonHoverBgColor: '#03ade8',

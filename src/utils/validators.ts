@@ -143,3 +143,21 @@ export const lessOrTen = {
   },
   validateType: 'requiredValidator',
 };
+
+export const lessOrOne = {
+  validator(
+    rule: any[],
+    value: any,
+    callback: (errors: any[]) => void,
+    storeData?: any,
+  ) {
+    const errors = [];
+
+    if (!value || Number(value) > 1) {
+      errors.push('Value must not be greater than 1');
+    }
+
+    callback(errors);
+  },
+  validateType: 'requiredValidator',
+};

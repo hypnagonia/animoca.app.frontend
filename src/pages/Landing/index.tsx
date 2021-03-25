@@ -124,8 +124,8 @@ export const Landing = observer(() => {
                     textShadow: '3px 2px 10px #000000',
                     // textShadow:
                     //     '2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
-                    fontWeight: 600,
-                    fontSize: isSmallMobile ? 30 : isMobile ? 35 : 45,
+                    fontWeight: 'bold',
+                    fontSize: isSmallMobile ? 30 : isMobile ? 35 : 70,
                     zIndex: 3,
                     // color: '#f9ca36',
                     // color: 'rgb(249 183 18)',
@@ -133,14 +133,13 @@ export const Landing = observer(() => {
                     textAlign: isSmallMobile ? 'center' : 'left',
                     letterSpacing: '0.02em',
                     display: isSmallMobile ? 'none' : 'block',
-                    fontFamily:
-                      'wfont_5de4af_58d65082edf1476c99721446ac4ddf3a,wf_58d65082edf1476c99721446a,orig_supercellmagic_regular',
+
                   }}
                   className={styles.mainTitle}
                   color="white"
                 >
-                  <span style={{color: '#f9ca36'}}>First Official <br /></span>
-                  <span style={{color: '#f9ca36'}}>Chest Sale</span>
+                  <span style={{color: '#f9ca36'}}>Own ONE Piece<br /></span>
+                  <span style={{color: '#f9ca36'}}> of History</span>
                 </Title>
 
                 <Box
@@ -166,7 +165,7 @@ export const Landing = observer(() => {
                         display: !isSmallMobile ? 'none' : 'block',
                       }}
                     >
-                      First Official Chest Sale
+                      Own ONE Piece of History
                     </b>
 
                     <b
@@ -199,10 +198,10 @@ export const Landing = observer(() => {
                       fontSize: 30,
                       marginTop: 10,
                     }}
-                    disabled
-                    onClick={() => {}}
-                    /*//routing.push('/buy')*/
 
+                    onClick={() => {
+                      routing.push('/buy')
+                    }}
                   >
                     Buy now
                   </Button>
@@ -229,14 +228,14 @@ export const Landing = observer(() => {
                   right: isMobile ? '' : '-40px',
                 }}
               >
-                <a href="https://apps.apple.com/app/apple-store/id1419991954">
+                <a href="https://apps.apple.com/us/app/quidd-digital-collectibles/id1063166978">
                   <img
                     src="/landing/main/app-store.png"
                     className={styles.appStore}
                   />
                 </a>
                 <a
-                  href="https://play.google.com/store/apps/details?id=com.animocabrands.google.beastquest.towerdefense.td">
+                  href="https://play.google.com/store/apps/details?id=com.quidd.quidd&hl=en_US&gl=US">
                   <img src="/landing/main/gp.png" className={styles.googlePlay} />
                 </a>
 
@@ -266,8 +265,7 @@ export const Landing = observer(() => {
               How to buy
             </Title>
             <Text color="white">
-              First time buying digital goods? Follow the tutorial below to
-              purchase these super valuable Beast Quest NFT chests!
+              First time buying digital goods? Follow the tutorial below to purchase these super limited edition Atari Centipedes!
             </Text>
 
             <Box
@@ -281,7 +279,7 @@ export const Landing = observer(() => {
               <Box className={styles.reason}>
                 <div className={styles.number}>1</div>
                 <div className={styles.imageContainer}>
-                  <img src="/landing/how-to-buy/1.png" />
+                  <img src="Player.png" />
                 </div>
                 <div className={styles.smallTitle}>
                   <Text>Create a digital wallet</Text>
@@ -297,7 +295,7 @@ export const Landing = observer(() => {
               <Box className={styles.reason}>
                 <div className={styles.number}>2</div>
                 <div className={styles.imageContainer}>
-                  <img src="/landing/how-to-buy/4.png" />
+                  <img src="/Flea.png" />
                 </div>
                 <div className={styles.smallTitle}>
                   <Text>Top up</Text>
@@ -326,107 +324,21 @@ export const Landing = observer(() => {
               <Box className={styles.reason}>
                 <div className={styles.number}>3</div>
                 <div className={styles.imageContainer}>
-                  <img src="/landing/how-to-buy/5.png" />
+                  <img src="/BlueMushroom.png" />
                 </div>
                 <div className={styles.smallTitle}>
-                  <Text>Purchase chests</Text>
+                  <Text>Purchase</Text>
                 </div>
                 <div className={styles.description}>
                   <Text>
-                    Once you have purchased a chest, your Collectible Card
+                    Once you have purchased a card, it
                     will be appear in your digital wallet.
                   </Text>
                 </div>
                 {/*<Button onClick={() => routing.push('/buy')}>Buy now</Button>*/}
-                <Button disabled onClick={() => {}}>Buy now</Button>
+                <Button onClick={() => {}}>Buy now</Button>
               </Box>
 
-              <Box className={styles.reason}>
-                <div className={styles.number}>4</div>
-                <div className={styles.imageContainer}>
-                  <img src="/landing/how-to-buy/2.png" />
-                </div>
-                <div className={styles.smallTitle}>
-                  <Text>Download Beast Quest</Text>
-                </div>
-                <div className={styles.description}>
-                  <Text>
-                    You need a Beast Quest User ID.
-                    If you don't have one, download the game and follow step 3.
-                  </Text>
-                </div>
-                <a href="https://www.animocabrands.com/beast-quest-ultimate-heroes?" target="_blank">
-                  <Button btnType="href">Download now</Button>
-                </a>
-              </Box>
-
-              <Box className={styles.reason} style={{
-                marginRight: isMobile ? 20 : 0
-              }}>
-                <div className={styles.number}>5</div>
-                <div className={styles.imageContainer}>
-                  <img src="/bquh-chest02.png" />
-                </div>
-                <div className={styles.smallTitle}>
-                  <Text>Get your Beast Quest User ID</Text>
-                </div>
-                <div className={styles.description}>
-                  <Text>
-                    After completing the tutorial in game, find your User ID in
-                    Settings.
-                  </Text>
-                </div>
-                <Button
-                  onClick={() => {
-                    actionModals.open(
-                      () => (
-                        <Box pad="medium">
-                          <Title>
-                            How to find your in-game user ID on Beast Quest
-                            Ultimate Heroes
-                          </Title>
-                          <Box margin={{top: 'large'}}>
-                            <Text>
-                              <ul>
-                                <li>
-                                  You need to first finish the tutorial (first 3
-                                  levels)
-                                </li>
-                                <li>
-                                  Then you will be able to access to the main
-                                  menu.
-                                </li>
-                                <li>
-                                  Tap the setting button on the top right corner
-                                  to open the setting menu
-                                </li>
-                                <li>
-                                  You will find your user ID at the bottom right
-                                  corner
-                                </li>
-                              </ul>
-                            </Text>
-                            <img src="/landing/how-to-buy/help.png" />
-                          </Box>
-                        </Box>
-                      ),
-                      {
-                        title: 'How to find',
-                        applyText: 'Got it',
-                        closeText: '',
-                        noValidation: true,
-                        width: '700px',
-                        showOther: true,
-                        onApply: () => {
-                          return Promise.resolve(true);
-                        },
-                      },
-                    );
-                  }}
-                >
-                  How to find
-                </Button>
-              </Box>
             </Box>
           </Box>
         </Box>

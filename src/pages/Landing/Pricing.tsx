@@ -11,7 +11,7 @@ import {
   NumberInput,
 } from 'components/Form';
 import {inject, observer} from 'mobx-react';
-import {formatWithTwoDecimals, moreThanZero, lessOrTen} from 'utils';
+import {formatWithTwoDecimals, moreThanZero, lessOrOne} from 'utils';
 import {IStores, useStores} from '../../stores';
 import {BuyLootBoxModal} from '../PlayersMarketplace/BuyLootBoxModal';
 import {SignIn} from '../../components/SignIn';
@@ -82,22 +82,17 @@ const Preview = ({buyBtn = null}) => {
       pad={isSmallMobile ? '20px' : 'xlarge'}
       margin={{top: isSmallMobile ? '' : 'medium', right: 'medium'}}
     >
-      <Title color="white">Limited Edition Chests</Title>
+      <Title color="white">Limited Edition</Title>
       <Text color="white">
        {/* Each chest costs 1000 ONE and contains 2400 gems,
         730 VIP points and a random NFT collectible card
         with rarity Common, Rare, Epic or Legendary.
         If you collect a set of cards, you are
         eligible for a 10,000 ONE staking reward!*/}
-        Each chest costs 250 ONE and contains 2400 gems,
-        730 VIP points and a random NFT collectible card
-        with rarity Common, Rare, Epic or Legendary.
-        If you collect a set of cards
-        (20-Common, 10-Rare, 5-epic, 1 Legendary)
-        + staking 50000 ONE (3 months)
-        to Animoca Brands validator,
-        you will receive part of
-        the 80% Chest purchase rewards
+        Get your hands on ONE of only 100 NFTs.
+        The Centipede series, created by the legendary Dona Bailey,
+        carry a special spirit and set the industry standard for decades.
+        Own ONE piece of history today.
       </Text>
 
       <Box direction="row">
@@ -323,9 +318,10 @@ export class PricingBase extends React.Component<IStores> {
               <NumberInput
                 name="amount"
                 label="Amount"
+                disabled
                 style={{width: '361px', maxWidth: '100%'}}
                 placeholder="0"
-                rules={[isRequired, moreThanZero, lessOrTen]}
+                rules={[isRequired, moreThanZero, lessOrOne]}
               />
               <Box direction="column" gap="30px" margin={{top: '10px'}}>
                 <Box direction="column" gap="10px">
@@ -346,10 +342,10 @@ export class PricingBase extends React.Component<IStores> {
                 </Box>
                 <Box style={{width: '361px', maxWidth: '100%'}}>
                   <Button
-                    disabled={user.status !== 'success' || true}
+                    disabled={user.status !== 'success'}
                     size="xlarge"
                     onClick={() => {
-                      //this.buyHandler();
+                      this.buyHandler();
                     }}
                   >
                     Buy now

@@ -26,6 +26,8 @@ import { MobileMenu } from './MobileMenu';
 export const MainLogo = styled.img`
   width: auto;
   height: 62px;
+  color: black;
+  background-color: black;
 `;
 
 export const MainLogoSmall = styled.img`
@@ -78,7 +80,7 @@ export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
                 margin={{ right: 'small' }}
                 onClick={() => history.push('/')}
               >
-                <MainLogoSmall src="main_logo.png" />
+                <MainLogoSmall src="atari-logo.png" />
               </Box>
               <Box>
                 {/*<Title size="small" color="BlackTxt" bold>*/}
@@ -160,10 +162,12 @@ export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
           <Box direction="row" align="center">
             <Box
               align="center"
+              direction="row"
               margin={{ right: 'small' }}
               onClick={() => history.push('/')}
             >
-              <MainLogo src="main_logo.png" />
+              <MainLogo src="atari-logo.png" style={{marginRight: 20}}/>
+              <MainLogo src="qlogo.png" />
             </Box>
             <Box>
               {/*<Title size="small" color="BlackTxt" bold>*/}
@@ -178,9 +182,8 @@ export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
 
 
             <Button
-              disabled
               style={{ width: isTabletOrMobile ? 80 : 140 }}
-              onClick={() => false && history.push('/buy')}
+              onClick={() => history.push('/buy')}
             >
               Buy
             </Button>

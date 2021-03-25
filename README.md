@@ -1,5 +1,4 @@
-# soccerplayer.app.frontend
-A soccer player crypto game ported to [Harmony](http://harmony.one) blockchain
+# ATARI NFT promo app on [Harmony](http://harmony.one) blockchain
 
 ## Install instructions
 

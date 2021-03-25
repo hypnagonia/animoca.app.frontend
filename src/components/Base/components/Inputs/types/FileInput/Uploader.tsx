@@ -35,7 +35,7 @@ export const FileUploader = ({ amount, onClearClick, ...rest }: IFileUploaderPro
           alignItems: 'center',
         }}
       >
-        <Text size="small">Выбрано файлов: {amount}</Text>
+        <Text size="small">selected files: {amount}</Text>
         <div
           style={{
             cursor: 'pointer',
