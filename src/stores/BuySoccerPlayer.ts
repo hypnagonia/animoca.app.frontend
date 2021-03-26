@@ -45,7 +45,7 @@ export class BuySoccerPlayer extends StoreConstructor {
 
           this.actionStatus = 'success';
 
-          setTimeout(() => resolve(), 2000);
+          setTimeout((r) => resolve(r), 2000);
 
           return;
         }

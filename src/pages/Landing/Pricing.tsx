@@ -1,22 +1,32 @@
-import * as React from 'react';
-import {Box} from 'grommet';
-import {Title, Text, Button} from 'components/Base';
-import * as styles from './pricing-styles.styl';
-import cn from 'classnames';
+import * as React from "react";
+import { Box } from "grommet";
+import { Title, Text, Button } from "components/Base";
+import * as styles from "./pricing-styles.styl";
+import cn from "classnames";
 import {
   Form,
   Input,
   isRequired,
   MobxForm,
-  NumberInput,
-} from 'components/Form';
-import {inject, observer} from 'mobx-react';
-import {formatWithTwoDecimals, moreThanZero, lessOrOne} from 'utils';
-import {IStores, useStores} from '../../stores';
-import {BuyLootBoxModal} from '../PlayersMarketplace/BuyLootBoxModal';
-import {SignIn} from '../../components/SignIn';
-import {useMediaQuery} from 'react-responsive';
-import {withRouter} from 'react-router';
+  NumberInput
+} from "components/Form";
+import { inject, observer } from "mobx-react";
+import { formatWithTwoDecimals, moreThanZero, lessOrOne } from "utils";
+import { IStores, useStores } from "../../stores";
+import { BuyLootBoxModal } from "../PlayersMarketplace/BuyLootBoxModal";
+import { SignIn } from "../../components/SignIn";
+import { useMediaQuery } from "react-responsive";
+import { withRouter } from "react-router";
+
+import { Suspense } from "react";
+import { Canvas, useLoader } from "react-three-fiber";
+// @ts-ignore
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+import { Mesh, Vector3 } from "three";
+import * as THREE from "three";
+
+import { useGLTF, OrbitControls, Html , useFBX} from "@react-three/drei";
 
 export const BoxItem = (props: {
   id: string;
@@ -28,10 +38,10 @@ export const BoxItem = (props: {
   return (
     <Box
       pad="medium"
-      className={cn(styles.boxItem, props.selected ? styles.selected : '')}
+      className={cn(styles.boxItem, props.selected ? styles.selected : "")}
       onClick={() => props.onClick()}
     >
-      <img style={{width:156, height: 131}} src={`/landing/pricing/${props.id}.png`} />
+      <img style={{ width: 156, height: 131 }} src={`/Flea.png`} />
       <div className={styles.numbers}>
         <Text color="white">
           {props.allow}/{props.total}
@@ -41,7 +51,7 @@ export const BoxItem = (props: {
   );
 };
 
-const DataItem = (props: {text: any; label: string}) => {
+const DataItem = (props: { text: any; label: string }) => {
   return (
     <Box direction="row" justify="between" gap="10px">
       <Box direction="row" justify="start" align="center" gap="5px">
@@ -56,7 +66,7 @@ const DataItem = (props: {text: any; label: string}) => {
   );
 };
 
-const DataItemLarge = (props: {text: any; label: string}) => {
+const DataItemLarge = (props: { text: any; label: string }) => {
   return (
     <Box direction="row" justify="between" gap="10px">
       <Box direction="row" justify="start" align="center" gap="5px">
@@ -69,22 +79,22 @@ const DataItemLarge = (props: {text: any; label: string}) => {
   );
 };
 
-const Preview = ({buyBtn = null}) => {
-  const isSmallMobile = useMediaQuery({query: '(max-width: 600px)'});
-  const {tokenList} = useStores();
+const Preview = ({ buyBtn = null }) => {
+  const isSmallMobile = useMediaQuery({ query: "(max-width: 600px)" });
+  const { tokenList } = useStores();
 
   return (
     <Box
       direction="column"
       width="400px"
       gap="20px"
-      style={{background: '#0D1C2B', borderRadius: 12, flexGrow: 1}}
-      pad={isSmallMobile ? '20px' : 'xlarge'}
-      margin={{top: isSmallMobile ? '' : 'medium', right: 'medium'}}
+      style={{ background: "#0D1C2B", borderRadius: 12, flexGrow: 1 }}
+      pad={isSmallMobile ? "20px" : "xlarge"}
+      margin={{ top: isSmallMobile ? "" : "medium", right: "medium" }}
     >
       <Title color="white">Limited Edition</Title>
       <Text color="white">
-       {/* Each chest costs 1000 ONE and contains 2400 gems,
+        {/* Each chest costs 1000 ONE and contains 2400 gems,
         730 VIP points and a random NFT collectible card
         with rarity Common, Rare, Epic or Legendary.
         If you collect a set of cards, you are
@@ -96,7 +106,7 @@ const Preview = ({buyBtn = null}) => {
       </Text>
 
       <Box direction="row">
-        <Box direction="column" style={{minWidth: 132, maxWidth:132, maxHeight: 140}}>
+      {/*  <Box direction="column" style={{ minWidth: 132, maxWidth: 132, maxHeight: 140 }}>
           {tokenList.boxes.map(box => (
             <BoxItem
               key={box.id}
@@ -105,26 +115,28 @@ const Preview = ({buyBtn = null}) => {
               onClick={() => (tokenList.boxId = box.id)}
             />
           ))}
-        </Box>
+        </Box>*/}
         {!isSmallMobile ? (
-          <Box justify="center" align="center" margin={{left: '50px'}}
-               style={{width: '100%'}}>
-           {/* <img
+          <Box justify="center" align="center"
+               style={{ width: "100%" }}>
+            {/* <img
               style={{maxWidth: '100%'}}
               src={`/landing/pricing/preview.png`}
             />*/}
-            <img
+            {/*<img
               style={{maxWidth: '100%'}}
-              src="/bquh-chest01.png" />
+              src="/bquh-chest01.png" />*/}
+
+            <DracoLocalScene />
           </Box>
         ) : null}
       </Box>
 
 
-      <Box>
+     {/* <Box >
         <Title color="white">Download Beast Quest</Title>
-        <img style={{width: 200, marginTop: 20}} src="/BQQR.png" />
-      </Box>
+        <img style={{ width: 200, marginTop: 20 }} src="/BQQR.png" />
+      </Box>*/}
 
       <Box justify="center" align="center">
         {buyBtn}
@@ -133,50 +145,50 @@ const Preview = ({buyBtn = null}) => {
   );
 };
 
-@inject('user', 'actionModals', 'buyPlayer', 'soccerPlayers', 'tokenList')
+@inject("user", "actionModals", "buyPlayer", "soccerPlayers", "tokenList")
 @observer
 export class PricingBase extends React.Component<IStores> {
   formRef: MobxForm;
 
   buyHandler = async () => {
-    const {user, actionModals, tokenList} = this.props;
+    const { user, actionModals, tokenList } = this.props;
 
     if (!user.isAuthorized) {
       await actionModals.open(SignIn, {
-        title: 'Sign in',
-        applyText: 'Sign in',
-        closeText: 'Cancel',
+        title: "Sign in",
+        applyText: "Sign in",
+        closeText: "Cancel",
         noValidation: true,
-        width: '500px',
+        width: "500px",
         showOther: true,
-        onApply: (data: any) => user.signIn(data.email, data.walletType),
+        onApply: (data: any) => user.signIn(data.email, data.walletType)
       });
     }
 
     this.formRef.validateFields().then(async data => {
       if (!user.isAuthorized) {
         await actionModals.open(SignIn, {
-          title: 'Sign in',
-          applyText: 'Sign in',
-          closeText: 'Cancel',
+          title: "Sign in",
+          applyText: "Sign in",
+          closeText: "Cancel",
           noValidation: true,
-          width: '500px',
+          width: "500px",
           showOther: true,
-          onApply: (data: any) => user.signIn(data.email, data.walletType),
+          onApply: (data: any) => user.signIn(data.email, data.walletType)
         });
       }
 
       // await buyPlayer.initPlayer(soccerPlayers.list[0].player);
 
       actionModals.open(() => <BuyLootBoxModal />, {
-        title: '',
-        applyText: 'Buy Chest',
-        closeText: 'Cancel',
+        title: "",
+        applyText: "Buy Now",
+        closeText: "Cancel",
         noValidation: true,
-        width: '1000px',
+        width: "1000px",
         showOther: true,
         onApply: () => this.props.tokenList.buyLootBox(),
-        onClose: () => tokenList.clear(),
+        onClose: () => tokenList.clear()
       });
     });
   };
@@ -184,22 +196,22 @@ export class PricingBase extends React.Component<IStores> {
 
   render() {
     // @ts-ignore
-    const {tokenList, user, actionModals, history, location} = this.props;
+    const { tokenList, user, actionModals, history, location } = this.props;
 
-    const isLandingPage = location.pathname === '/';
+    const isLandingPage = location.pathname === "/";
 
     const buyBtn = <Button
-      disabled={user.status !== 'success'}
+      disabled={user.status !== "success"}
       size="xlarge"
       style={{
         fontSize: 40,
         padding: 30,
         marginTop: 20,
-        cursor: 'pointer',
+        cursor: "pointer"
       }}
       onClick={() => {
         if (isLandingPage) {
-          history.push('/buy');
+          history.push("/buy");
           return;
         }
 
@@ -212,7 +224,7 @@ export class PricingBase extends React.Component<IStores> {
     return (
       <Box
         className={styles.pricingBody}
-        margin={{top: 'medium'}}
+        margin={{ top: "medium" }}
         gap="20px"
         justify="between"
         fill={true}
@@ -221,61 +233,61 @@ export class PricingBase extends React.Component<IStores> {
 
 
         {!isLandingPage && <Box
-          direction="column"
-          width="400px"
-          justify="center"
-          style={{background: '#0D1C2B', borderRadius: 12, height: 400, marginTop:24}}
+            direction="column"
+            width="400px"
+            justify="center"
+            style={{ background: "#0D1C2B", borderRadius: 12, height: 400, marginTop: 24 }}
         >
           <Form
-            ref={ref => (this.formRef = ref)}
-            data={tokenList.formData}
-            {...({} as any)}
+              ref={ref => (this.formRef = ref)}
+              data={tokenList.formData}
+              {...({} as any)}
           >
             <Box
-              direction="column"
-              justify="between"
-              align="center"
-              pad="20px"
-              className={styles.formStyles}
+                direction="column"
+                justify="between"
+                align="center"
+                pad="20px"
+                className={styles.formStyles}
             >
               <Box direction="row" align="end">
                 <Input
-                  name="address"
-                  disabled={true}
-                  label={
-                    user.isAuthorized
-                      ? 'Wallet Address'
-                      : 'Wallet Address (sign in to get wallet address)'
-                  }
-                  style={{
-                    width: !user.isAuthorized ? '260px' : '361px',
-                    maxWidth: '100%',
-                  }}
-                  placeholder="address"
-                  rules={[isRequired]}
+                    name="address"
+                    disabled={true}
+                    label={
+                      user.isAuthorized
+                        ? "Wallet Address"
+                        : "Wallet Address (sign in to get wallet address)"
+                    }
+                    style={{
+                      width: !user.isAuthorized ? "260px" : "361px",
+                      maxWidth: "100%"
+                    }}
+                    placeholder="address"
+                    rules={[isRequired]}
                 />
                 {!user.isAuthorized ? (
                   <Button
-                    margin={{left: 'medium', bottom: 'small'}}
+                    margin={{ left: "medium", bottom: "small" }}
                     onClick={() => {
                       actionModals.open(SignIn, {
-                        title: 'Sign in',
-                        applyText: 'Sign in',
-                        closeText: 'Cancel',
+                        title: "Sign in",
+                        applyText: "Sign in",
+                        closeText: "Cancel",
                         noValidation: true,
-                        width: '500px',
+                        width: "500px",
                         showOther: true,
                         onApply: (data: any) =>
-                          user.signIn(data.email, data.walletType),
+                          user.signIn(data.email, data.walletType)
                       });
                     }}
-                    disabled={user.status !== 'success'}
+                    disabled={user.status !== "success"}
                   >
                     Sign in
                   </Button>
                 ) : null}
               </Box>
-             {/* <Box
+              {/* <Box
                 direction="column"
                 justify="start"
                 align="start"
@@ -308,7 +320,7 @@ export class PricingBase extends React.Component<IStores> {
                   </Box>
                 </Box>
               </Box>*/}
-             {/* <Input
+              {/* <Input
                 name="playerId"
                 label="Beast Quest Player ID"
                 style={{width: '361px', maxWidth: '100%'}}
@@ -316,37 +328,38 @@ export class PricingBase extends React.Component<IStores> {
                 rules={[isRequired]}
               />*/}
               <NumberInput
-                name="amount"
-                label="Amount"
-                disabled
-                style={{width: '361px', maxWidth: '100%'}}
-                placeholder="0"
-                rules={[isRequired, moreThanZero, lessOrOne]}
+                  name="amount"
+                  label="Amount"
+                  disabled
+                  style={{ width: "361px", maxWidth: "100%" }}
+                  placeholder="0"
+                  rules={[isRequired, moreThanZero, lessOrOne]}
               />
-              <Box direction="column" gap="30px" margin={{top: '10px'}}>
+              <Box direction="column" gap="30px" margin={{ top: "10px" }}>
                 <Box direction="column" gap="10px">
                   {/*  <DataItem
                     label="Lootbox type:"
                     text={`${tokenList.selectedBox.id}`}
                   />*/}
                   <DataItem
-                    label="Price:"
-                    text={`${tokenList.selectedBox.price} ONEs`}
+                      label="Price:"
+                      text={`${tokenList.selectedBox.price} ONEs`}
                   />
-                  <Box margin={{top: 'small'}}>
+                  <Box margin={{ top: "small" }}>
                     <DataItemLarge
-                      label="Total:"
-                      text={`${formatWithTwoDecimals(tokenList.total)} ONEs`}
+                        label="Total:"
+                        text={`${formatWithTwoDecimals(tokenList.total)} ONEs`}
                     />
                   </Box>
                 </Box>
-                <Box style={{width: '361px', maxWidth: '100%'}}>
+                <Box style={{ width: "361px", maxWidth: "100%" }}>
                   <Button
-                    disabled={user.status !== 'success'}
-                    size="xlarge"
-                    onClick={() => {
-                      this.buyHandler();
-                    }}
+                      disabled={user.status !== "success"
+                      || tokenList.list.length && tokenList.list.length > 1}
+                      size="xlarge"
+                      onClick={() => {
+                        this.buyHandler();
+                      }}
                   >
                     Buy now
                   </Button>
@@ -359,6 +372,44 @@ export class PricingBase extends React.Component<IStores> {
     );
   }
 }
+
+
+
+
+function SuzanneWithLocal() {
+  useGLTF.preload("/cartridge.glb")
+
+  const { nodes, materials } = useGLTF("/cartridge.glb");
+  console.log({ nodes, materials }, nodes['Red']);
+
+  return (
+    <primitive object={nodes['Red']}/>
+  )
+}
+
+function DracoLocalScene() {
+  return (
+        <Canvas
+          colorManagement
+          shadowMap
+          camera={{ position: new THREE.Vector3(0, 0, 61), fov: 75 }}
+          /*pixelRatio={window.devicePixelRatio}*/
+          style={{height: 500}}
+        >
+          <directionalLight position={[10, 10, 5]} intensity={2} />
+          <directionalLight position={[-10, -10, -5]} intensity={1} />
+{/*
+          <ambientLight intensity={0.8} />
+          <pointLight intensity={1} position={[0, 6, 0]} />*/}
+          <React.Suspense fallback={<Html>Loading</Html>}>
+          <SuzanneWithLocal />
+          </React.Suspense>
+          {/*@ts-ignore*/}
+          <OrbitControls />
+        </Canvas>
+  );
+}
+
 
 // @ts-ignore
 export const Pricing = withRouter(PricingBase);

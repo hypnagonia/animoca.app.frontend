@@ -81,7 +81,7 @@ export const MobileMenu = observer(props => {
         </Button>
       )}
 
-      <Button
+    {/*  <Button
         onClick={() => {
           history.push('/leaders')
           actionModals.closeLastModal();
@@ -89,7 +89,7 @@ export const MobileMenu = observer(props => {
         style={{ width: 200 }}
       >
         Leaders
-      </Button>
+      </Button>*/}
 
       <Button
         onClick={() => {

@@ -66,6 +66,7 @@ export class SendSoccerPlayer extends StoreConstructor {
 
           this.actionStatus = 'success';
 
+          //@ts-ignore
           setTimeout(() => resolve(), 2000);
 
           return;

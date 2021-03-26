@@ -60,7 +60,7 @@ export const PlayerCardLite = observer<IPlayerCardProps>(props => {
     >
       <img
         style={{ padding: '10% 0', height: '80%', maxHeight: 131, maxWidth:156 }}
-        src="/bquh-chest02.png"
+        src="/Player.png"
       />
 
       <Box className={styles.infoBlock} fill={true} gap="10px" pad="medium">

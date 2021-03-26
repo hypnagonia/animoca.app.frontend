@@ -199,12 +199,12 @@ export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
               </Button>
             )}
 
-            <Button
+       {/*     <Button
               onClick={() => history.push('/leaders')}
               style={{ width: isTabletOrMobile ? 130 : 140 }}
             >
               Leaders
-            </Button>
+            </Button>*/}
 
             {user.status !== 'success' ? (
               <Spinner />

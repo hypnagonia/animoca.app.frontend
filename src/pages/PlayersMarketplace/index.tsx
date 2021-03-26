@@ -116,6 +116,7 @@ export const PlayersMarketplace = observer(() => {
     <BaseContainer>
       <Box style={
         {
+          display: 'none',
           backgroundColor: "white",
           borderRadius: "5px",
           padding: "20px",

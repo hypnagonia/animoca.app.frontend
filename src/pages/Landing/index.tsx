@@ -94,7 +94,7 @@ export const Landing = observer(() => {
             }}
             className={styles.pageContent}
           >
-            {!isMobile ? (
+            {false && !isMobile ? (
               <>
                 <img src="/landing/main/dragon.png" className={styles.dragon} />
                 <img src="/landing/main/heroes.png" className={styles.heroes} />
@@ -133,13 +133,15 @@ export const Landing = observer(() => {
                     textAlign: isSmallMobile ? 'center' : 'left',
                     letterSpacing: '0.02em',
                     display: isSmallMobile ? 'none' : 'block',
-
+                    borderRadius: 15,
+                    padding: 20,
+                    background: 'rgba(0, 0, 0, 0)'
                   }}
                   className={styles.mainTitle}
                   color="white"
                 >
-                  <span style={{color: '#f9ca36'}}>Own ONE Piece<br /></span>
-                  <span style={{color: '#f9ca36'}}> of History</span>
+                  <span style={{color: 'white'}}>Own ONE Piece<br /></span>
+                  <span style={{color: 'white'}}> of History</span>
                 </Title>
 
                 <Box
@@ -347,7 +349,7 @@ export const Landing = observer(() => {
 
         <Box className={styles.needToBuy}>
           <Box
-            pad={{top: '60px', bottom: '0px'}}
+            pad={{top: '60px', bottom: '60px'}}
             direction="row"
             align="center"
           >
@@ -356,38 +358,13 @@ export const Landing = observer(() => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen></iframe>
           </Box>
-          <Box
-            pad={{top: '60px', bottom: '100px'}}
-            className={styles.pageContent}
-            direction="row"
-            align="center"
-          >
-
-            <Box>
-              <Title color="white">
-                How do the staking rewards work?
-              </Title>
-            </Box>
-            <Box>
-              <Text color="white">
-                You have a chance to win a Harmony ONE special reward!
-                To be eligible for the Harmony ONE
-                staking reward, you need to collect a set of cards
-                and delegate 50,000 ONE tokens to Animoca’s
-                Harmony validator. A set can be any of the following:
-                20 common cards, 10 rare, 5 epic, or 1 legendary card.
-
-                For more information on the ONE staking reward, please see this blog post.
-              </Text>
-            </Box>
-          </Box>
         </Box>
 
         <Box className={styles.pricing}>
           <Box
             pad={{
-              top: isSmallMobile ? '50px' : '80px',
-              bottom: isSmallMobile ? '50px' : '80px',
+              top: isSmallMobile ? '20px' : '20px',
+              bottom: isSmallMobile ? '10px' : '20px',
             }}
             // className={styles.pageContent}
             direction="column"
@@ -395,7 +372,7 @@ export const Landing = observer(() => {
             fill={true}
             style={{maxWidth: 1200, margin: '0 auto'}}
           >
-            <Title
+            {/*<Title
               style={{
                 fontWeight: 600,
                 fontSize: 36,
@@ -404,7 +381,7 @@ export const Landing = observer(() => {
               color="white"
             >
               Pricing
-            </Title>
+            </Title>*/}
             <Pricing />
           </Box>
         </Box>

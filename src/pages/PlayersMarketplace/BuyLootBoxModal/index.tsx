@@ -33,7 +33,7 @@ const Description = observer(() => {
           />
         );
       description =
-        'Each Chest contains 2400 gems, 730 VIP points and a card with rarity Common, Epic or Legendary. The card is a collectible and can be used to claim ONE rewards via staking.';
+        'Get your hands on ONE of only 100 NFTs. The Centipede series, created by the legendary Dona Bailey, carry a special spirit and set the industry standard for decades. Own ONE piece of history today.';
       break;
 
     case 'fetching':
@@ -92,7 +92,7 @@ export const BuyLootBoxModal = observer<IBuyPlayerModalProps>(props => {
         gap="20px"
         pad="medium"
       >
-        <Title style={{textAlign: 'center'}}>Buy Chest</Title>
+        <Title style={{textAlign: 'center'}}>Buy</Title>
         <PlayerCardLite />
         <Description />
       </Box>
@@ -107,7 +107,7 @@ export const BuyLootBoxModal = observer<IBuyPlayerModalProps>(props => {
       }}
       className={styles.modalContainer}
     >
-      <Title style={{textAlign: 'center'}}>Buy Chest</Title>
+      <Title style={{textAlign: 'center'}}>Buy</Title>
       <Box
         margin={{vertical: isMobile ? '' : 'large'}}
         direction="row"

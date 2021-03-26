@@ -253,6 +253,7 @@ export class TokenList extends StoreConstructor {
           setTimeout(async () => {
             await this.getList();
 
+            //@ts-ignore
             resolve();
           }, 2000);
 

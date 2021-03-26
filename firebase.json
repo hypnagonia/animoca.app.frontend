@@ -1,7 +1,5 @@
 {
-  "hosting": [
-    {
-    "target": "animoca",
+  "hosting": {
     "public": "build",
     "ignore": [
       "firebase.json",
@@ -14,21 +12,5 @@
         "destination": "/index.html"
       }
     ]
-  },
-    {
-      "target": "animoca-testnet",
-      "public": "build",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    }
-  ]
+  }
 }
