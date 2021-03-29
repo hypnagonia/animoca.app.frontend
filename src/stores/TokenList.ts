@@ -31,7 +31,7 @@ export interface ITokenCard {
 }
 
 const sortByRarity = (a, b) => {
-  return score[b.core.rarity.value] - score[a.core.rarity.value];
+  return a - b
 };
 
 export class TokenList extends StoreConstructor {
@@ -91,26 +91,12 @@ export class TokenList extends StoreConstructor {
 
   @computed
   get totalByRarity() {
-    return Object.keys(score).reduce((o, rarity) => {
-      o[rarity] = this.list.filter(e => e.core.rarity.value === rarity).length;
-      return o;
-    }, {});
+    return 1
   }
 
   @computed
   get totalSets() {
-    const amountForSet = {
-      "Common": 20,
-      "Rare": 10,
-      "Epic": 5,
-      "Legendary": 1
-    };
-
-    return Object.keys(score)
-      .map(k => ~~(this.list.filter(e => e.core.rarity.value === k).length / amountForSet[k]))
-      .reduce((a, b) => {
-        return a + b;
-      }, 0);
+    return 1
   }
 
   @computed

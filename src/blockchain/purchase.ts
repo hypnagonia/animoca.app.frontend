@@ -24,12 +24,12 @@ export const purchaseOneWallet = (params: IParams): Promise<any> => {
 
       const recipient = addrHex;
       // const recipient = "0x0B585F8DaEfBC68a311FbD4cB20d9174aD174016";
-      const lotId = params.lotId || 0;
-      const quantity = params.quantity;
-      const tokenAddress = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee';
-      const maxTokenAmount = params.amount;
-      const minConversionRate = '0xDE0B6B3A7640000'; // equivalent to 1e+18
-      const extData = params.playerId;
+      //const lotId = params.lotId || 0;
+      //const quantity = params.quantity;
+      //const tokenAddress = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee';
+      //const maxTokenAmount = params.amount;
+      //const minConversionRate = '0xDE0B6B3A7640000'; // equivalent to 1e+18
+      //const extData = params.playerId;
 
       const ONE = '000000000000000000';
 
@@ -37,26 +37,9 @@ export const purchaseOneWallet = (params: IParams): Promise<any> => {
 
       let options2 = { gasPrice: 1000000000, gasLimit: 6721900, value };
 
-      console.log({
-        recipient,
-        lotId,
-        quantity,
-        tokenAddress,
-        maxTokenAmount,
-        hexToNumber: hexToNumber(minConversionRate),
-        extData
-      })
       const res = await contractSale.methods
-        .purchaseFor(
+        .purchaseItem(
           recipient,
-          lotId,
-          quantity,
-          tokenAddress,
-          maxTokenAmount,
-          hexToNumber(minConversionRate),
-          extData,
-
-
         )
         .send(options2);
 

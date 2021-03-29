@@ -139,7 +139,6 @@ function SuzanneWithLocal() {
   useGLTF.preload("/cartridge.glb")
 
   const { nodes, materials } = useGLTF("/cartridge.glb");
-  console.log({ nodes, materials }, nodes['Red']);
 
   return (
     <primitive object={nodes['Red']}/>

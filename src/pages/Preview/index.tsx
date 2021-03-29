@@ -65,7 +65,7 @@ export const Preview = observer(() => {
               justify="center"
             >
               Congratulations on completing your purchase!
-              Share this on social media for a chance to win 10 chests!
+              Share this on social media!
             </Box>
             <Box
               style={{marginTop: 20}}
