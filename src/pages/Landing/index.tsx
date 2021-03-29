@@ -140,7 +140,7 @@ export const Landing = observer(() => {
                   className={styles.mainTitle}
                   color="white"
                 >
-                  <span style={{color: 'white'}}>Own ONE Piece<br /></span>
+                  <span style={{color: 'white'}}>Own a Piece<br /></span>
                   <span style={{color: 'white'}}> of History</span>
                 </Title>
 
@@ -150,7 +150,8 @@ export const Landing = observer(() => {
                   gap="22px"
                   className={styles.specialBlock}
                 >
-                  <Text
+                  <img style={{width:'100%', height: '100%'}} src="/pixels.png"/>
+                  {/*<Text
                     // style={{ textShadow: '1px 4px 12px #000000' }}
                     color="white"
                     style={{
@@ -206,18 +207,9 @@ export const Landing = observer(() => {
                     }}
                   >
                     Buy now
-                  </Button>
+                  </Button>*/}
                 </Box>
 
-                {/*{user.isAuthorized ? (*/}
-                {/*  <Button*/}
-                {/*    bgColor="rgb(0, 173, 232)"*/}
-                {/*    size="xxlarge"*/}
-                {/*    onClick={() => routing.push('/my-cards')}*/}
-                {/*  >*/}
-                {/*    My cards ({tokenList.list.length})*/}
-                {/*  </Button>*/}
-                {/*) : null}*/}
               </Box>
 
               <Box
@@ -353,7 +345,7 @@ export const Landing = observer(() => {
             direction="row"
             align="center"
           >
-            <iframe width={isMobile ? "400" : "800"} height={isMobile ? "300" : "500"} src="https://www.youtube.com/embed/uPPj1yzzAKA" frameBorder="0"
+            <iframe width={isMobile ? "400" : "800"} height={isMobile ? "300" : "500"} src="https://vimeo.com/529552991/2cd175530c" frameBorder="0"
                     style={{margin: 'auto'}}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen></iframe>

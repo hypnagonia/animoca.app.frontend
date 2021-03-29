@@ -27,12 +27,13 @@ export const MainLogo = styled.img`
   width: auto;
   height: 62px;
   color: black;
-  background-color: black;
+  background-color: white;
 `;
 
 export const MainLogoSmall = styled.img`
   width: auto;
   height: 52px;
+  background-color: white;
 `;
 
 export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(

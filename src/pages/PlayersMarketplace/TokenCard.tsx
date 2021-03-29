@@ -7,6 +7,9 @@ import handleViewport from 'react-in-viewport';
 
 import { useStores } from 'stores';
 import { ITokenCard } from 'stores/TokenList';
+import { Html, OrbitControls, useGLTF } from "@react-three/drei";
+import { Canvas } from "react-three-fiber";
+import * as THREE from "three";
 
 const DataItem = (props: {
   text: any;
@@ -67,19 +70,24 @@ export const PlayerCardEx = observer<IPlayerCardProps>(props => {
       ref={props.forwardedRef}
       style={props.style}
     >
-      <img width="100%" src={props.data.image} />
+      {/*<img width="100%" src={props.data.image} />*/}
+
+      <DracoLocalScene />
 
       <Box className={styles.infoBlock} fill={true} gap="10px" pad="medium">
-        <DataItem icon="Right" iconSize="16px" text={props.data.playerId || '—'} label="Player ID" />
-        <DataItem icon="User" iconSize="16px" text={props.data.name} label="Name" />
-        <DataItem
+        <span>
+          Centipede 2600 Cartridge Classic - RED
+        </span>
+        {/*<DataItem icon="Right" iconSize="16px" text={props.data.playerId || '—'} label="Player ID" />*/}
+        {/*<DataItem icon="User" iconSize="16px" text={"Centipede 2600 Cartridge Classic - RED"} label="Name" />*/}
+       {/* <DataItem
           icon="Medal"
           iconSize="16px"
           text={
             props.data.attributes.find(v => v.trait_type === 'rarity').value
           }
           label="Rarity"
-        />
+        />*/}
         {/*{props.data.attributes.map(item => (*/}
         {/*  <DataItem*/}
         {/*    text={item.value}*/}
@@ -125,5 +133,40 @@ export const PlayerCardEx = observer<IPlayerCardProps>(props => {
     </Box>
   );
 });
+
+
+function SuzanneWithLocal() {
+  useGLTF.preload("/cartridge.glb")
+
+  const { nodes, materials } = useGLTF("/cartridge.glb");
+  console.log({ nodes, materials }, nodes['Red']);
+
+  return (
+    <primitive object={nodes['Red']}/>
+  )
+}
+
+function DracoLocalScene() {
+  return (
+    <Canvas
+      colorManagement
+      shadowMap
+      camera={{ position: new THREE.Vector3(0, 0, 61), fov: 84 }}
+      /*pixelRatio={window.devicePixelRatio}*/
+      style={{height: 360}}
+    >
+      <directionalLight position={[10, 10, 5]} intensity={2} />
+      <directionalLight position={[-10, -10, -5]} intensity={1} />
+      {/*
+          <ambientLight intensity={0.8} />
+          <pointLight intensity={1} position={[0, 6, 0]} />*/}
+      <React.Suspense fallback={<Html>Loading</Html>}>
+        <SuzanneWithLocal />
+      </React.Suspense>
+      {/*@ts-ignore*/}
+      <OrbitControls />
+    </Canvas>
+  );
+}
 
 export const TokenCard = handleViewport(PlayerCardEx);

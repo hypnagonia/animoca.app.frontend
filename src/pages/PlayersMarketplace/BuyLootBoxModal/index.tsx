@@ -33,7 +33,7 @@ const Description = observer(() => {
           />
         );
       description =
-        'Get your hands on ONE of only 100 NFTs. The Centipede series, created by the legendary Dona Bailey, carry a special spirit and set the industry standard for decades. Own ONE piece of history today.';
+        'Get your hands on ONE of only 100 NFTs. The Centipede series, created by the legendary Dona Bailey, carry a special spirit and set the industry standard for decades. Own a piece of history today.';
       break;
 
     case 'fetching':
