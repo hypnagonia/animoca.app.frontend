@@ -150,8 +150,8 @@ export const Landing = observer(() => {
                   gap="22px"
                   className={styles.specialBlock}
                 >
-                  <img style={{width:'100%', height: '100%'}} src="/pixels.png"/>
-                  {/*<Text
+
+                  <Text
                     // style={{ textShadow: '1px 4px 12px #000000' }}
                     color="white"
                     style={{
@@ -174,12 +174,10 @@ export const Landing = observer(() => {
                     <b
                       style={{}}
                     >
-                      Beast Quest, Animoca Brands and Harmony Protocol have teamed up
-                      for this exclusive offer! Buy limited edition chests
-                      containing gems, VIP points & NFT collectible cards.
-                      Collect a set to win Harmony ONE tokens!
+                      Atari, Quidd and Harmony have teamed up
+                      to offer this exclusive limited edition Atari Centipede NFTs
                     </b>
-                    <b
+                   {/* <b
                       style={{
                         textTransform: 'uppercase',
                         color: '#e7ab10',
@@ -189,9 +187,9 @@ export const Landing = observer(() => {
                       }}
                     >
                       Delegation rewards distribution in
-                    </b>
+                    </b>*/}
                   </Text>
-                  <CountdownTimer className={styles.timer} {...settings} />
+                  {/*<CountdownTimer className={styles.timer} {...settings} />*/}
                   <Button
                     style={{
                       width: '100%',
@@ -199,7 +197,7 @@ export const Landing = observer(() => {
                       alignItems: 'center',
                       fontWeight: 500,
                       fontSize: 30,
-                      marginTop: 10,
+                      marginTop: 215,
                     }}
 
                     onClick={() => {
@@ -207,7 +205,7 @@ export const Landing = observer(() => {
                     }}
                   >
                     Buy now
-                  </Button>*/}
+                  </Button>
                 </Box>
 
               </Box>
@@ -345,10 +343,16 @@ export const Landing = observer(() => {
             direction="row"
             align="center"
           >
-            <iframe width={isMobile ? "400" : "800"} height={isMobile ? "300" : "500"} src="https://vimeo.com/529552991/2cd175530c" frameBorder="0"
+           {/* <iframe width={isMobile ? "400" : "800"} height={isMobile ? "300" : "500"} src="https://vimeo.com/529552991/2cd175530c" frameBorder="0"
                     style={{margin: 'auto'}}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen></iframe>
+                    allowFullScreen></iframe>*/}
+
+            <video
+              poster="poster.png"
+               width="800" height="500" controls style={{border: 'none', margin: 'auto'}}>
+              <source src="Atari.mp4" type="video/mp4"/>
+            </video>
           </Box>
         </Box>
 

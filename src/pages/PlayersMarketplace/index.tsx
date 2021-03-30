@@ -213,6 +213,20 @@ export const PlayersMarketplace = observer(() => {
         {/*  </Box>*/}
         {/*</Box>*/}
 
+        {tokenList.filteredList.length  && <div style={{textAlign: 'center', width: '100%'}}>
+          <span style={{color: "white"}}>
+
+
+            {tokenList.filteredList.length === 1 ? 'You have 1 cartridge' : `You have ${tokenList.filteredList.length} cartridges` }</span>
+        </div>}
+        {tokenList.filteredList.length === 0 && <>
+          <div style={{textAlign: 'center', width: '100%'}}>
+          <span style={{color: "white"}}>
+            Inventory is empty
+             </span>
+          </div>
+        </>}
+
         {isLoading ?
           //@ts-ignore
           <Loader />
@@ -223,16 +237,19 @@ export const PlayersMarketplace = observer(() => {
             direction="row"
             justify={
               tokenList.filteredList.length < 10 || isSmallMobile
-                ? "start"
-                : "start"
+                ? "center"
+                : "center"
             }
-            align="start"
+            align="center"
             wrap
             gap={tokenList.filteredList.length < 10 ? "20px" : "10x"}
             style={{ minHeight: 600 }}
           >
 
-            {tokenList.filteredList.map((item, idx) => (
+            {tokenList
+              .filteredList
+              .filter((a,i)=>i===0)
+              .map((item, idx) => (
               <TokenCard
                 key={item.id}
                 data={item}

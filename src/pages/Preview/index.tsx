@@ -76,8 +76,8 @@ export const Preview = observer(() => {
               <Button
                 style={{ width: 140 }}
                 onClick={() => share({
-                  text: `I just bought ${tokenList.newCardsList.length || ''} @animocabrands NFT chests on @harmonyprotocol! Join in for your chance to win special rewards 🎉🥳👇`,
-                  hashtags: 'HarmonyNFTs,animoca,blockchain,gaming,NFT'
+                  text: `I just bought ${tokenList.newCardsList.length || ''} @atari @quidd NFT "Centipede 2600 Cartridge" on @harmonyprotocol! Join in for your chance to own a piece of history 🎉🥳👇`,
+                  hashtags: 'HarmonyNFTs'
                 })}
               >
                 <Twitter size="small" color={'white'} />&nbsp;

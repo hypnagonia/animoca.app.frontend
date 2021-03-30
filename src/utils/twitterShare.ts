@@ -1,4 +1,4 @@
-export const share = ({text = '', url = 'https://bquh.io', hashtags = 'HarmonyNFTs,animoca,blockchain,gaming,NFT'}) => {
+export const share = ({text = '', url = 'https://atari.harmony.one', hashtags = 'HarmonyNFTs,animoca,blockchain,gaming,NFT'}) => {
   if (!text) {
     return
   }

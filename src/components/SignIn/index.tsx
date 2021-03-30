@@ -31,15 +31,10 @@ export class SignIn extends React.Component<IStores & any> {
   componentDidMount = () => {
     const isMobile = !!md.mobile();
 
-    if (isMobile) {
-      this.walletType = WALLET_TYPE.MAGIC_WALLET;
-    }
 
     this.props.onValidate.callback = () => {
       if (this.walletType === WALLET_TYPE.MAGIC_WALLET) {
-        return this.formRef
-          .validateFields()
-          .then(data => ({ ...data, walletType: this.walletType }));
+        return Promise.resolve({ walletType: this.walletType })
       } else {
         return Promise.resolve({ walletType: this.walletType });
       }
@@ -82,11 +77,9 @@ export class SignIn extends React.Component<IStores & any> {
                 ? styles.selected
                 : '',
             )}
-            style={{ cursor: 'not-allowed'}}
-            onClick={()=>{}}
-            /*onClick={() => (this.walletType = WALLET_TYPE.MAGIC_WALLET)}*/
-          ><img src="/magic.svg" style={{ height: 40 ,cursor: 'not-allowed'}} />
-          &nbsp;(coming soon...)
+            onClick={() => (this.walletType = WALLET_TYPE.MAGIC_WALLET)}
+          ><img src="/metamask.svg" style={{ height: 40 ,cursor: 'not-allowed'}} />
+          &nbsp;Metamask
           </Box>
         </Box>
 
@@ -102,17 +95,7 @@ export class SignIn extends React.Component<IStores & any> {
                 margin={{ vertical: 'xsmall' }}
                 pad={{ horizontal: 'large', vertical: 'xsmall' }}
               >
-                <Title>Use Magic Wallet</Title>
-                <Box margin={{ bottom: 'xsmall', top: 'small' }}>
-                  <Text>Email: </Text>
-                </Box>
-                <Input
-                  name="email"
-                  label=""
-                  style={{ width: '361px', maxWidth: '100%' }}
-                  placeholder="email@gmail.com"
-                  rules={[isRequired, isEmail]}
-                />
+                <Title>Use MetaMask</Title>
               </Box>
             </Form>
           </Box>

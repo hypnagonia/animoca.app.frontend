@@ -10,6 +10,7 @@ import { ITokenCard } from 'stores/TokenList';
 import { Html, OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
 import * as THREE from "three";
+useGLTF.preload("/cartridge.glb")
 
 const DataItem = (props: {
   text: any;
@@ -136,8 +137,6 @@ export const PlayerCardEx = observer<IPlayerCardProps>(props => {
 
 
 function SuzanneWithLocal() {
-  useGLTF.preload("/cartridge.glb")
-
   const { nodes, materials } = useGLTF("/cartridge.glb");
 
   return (

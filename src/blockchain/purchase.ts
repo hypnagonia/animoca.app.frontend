@@ -2,10 +2,17 @@ import {
   connectToOneWallet,
   contractSale,
   contractToken,
+  contractJsonSale,
   hmy,
   options,
+  RPC_URL
 } from './sdk';
 const { hexToNumber, numberToHex } = require('@harmony-js/utils');
+import Web3 from 'web3'
+const BN = require('bn.js');
+const isMainnet = !!(+process.env.MAINNET)
+console.log({RPC_URL})
+const web3 = new Web3(RPC_URL);
 
 interface IParams {
   address: string;
@@ -60,6 +67,7 @@ export const purchaseOneWallet = (params: IParams): Promise<any> => {
 };
 
 export const purchase = (params: IParams): Promise<any> => {
+  console.log('purchase', params)
   return new Promise(async (resolve, reject) => {
     try {
       const addrHex = hmy.crypto.getAddress(params.address).checksum;
@@ -67,47 +75,32 @@ export const purchase = (params: IParams): Promise<any> => {
       // connectToOneWallet(contractToken.wallet, params.address, reject);
 
       const recipient = addrHex;
-      // const recipient = "0x0B585F8DaEfBC68a311FbD4cB20d9174aD174016";
-      const lotId = params.lotId || 0;
-      const quantity = params.quantity;
-      const tokenAddress = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee';
-      const maxTokenAmount = params.amount;
 
-      const minConversionRate = '0xDE0B6B3A7640000'; // equivalent to 1e+18
-      const extData = params.playerId;
+      const contractJson = contractJsonSale
+      const contract = new web3.eth.Contract(contractJson.abi, isMainnet ? process.env.TOKEN : process.env.TESTNET_TOKEN);
+      const needGas = await contract.methods
+        .purchaseItem(recipient)
+        .estimateGas({
+          gas: 1000000000,
+          value: web3.utils.toWei("100", "ether"),
+        });
 
-      const ONE = '000000000000000000';
+      console.log({needGas})
+      const response = await contract.methods
+        .purchaseItem(recipient)
+        .send({
+        from: recipient,
+        value: web3.utils.toWei("100", "ether"),
+        gas: needGas,
+        gasPrice: new BN(await web3.eth.getGasPrice()).mul(new BN(1)),
+      }).on("transactionHash",
+          async (txHash) => {
+            resolve(txHash);
+          }
+        );
 
-      let tx = await contractSale.methods.purchaseFor(
-        recipient,
-        lotId,
-        quantity,
-        tokenAddress,
-        maxTokenAmount,
-        hexToNumber(minConversionRate),
-        extData,
-      );
+      console.log(response);
 
-      let { txPayload } = tx.transaction;
-
-      txPayload.from = params.address;
-      txPayload.gasLimit = options.gasLimit;
-      txPayload.gasPrice = '1000000000';
-      txPayload.value = numberToHex(params.amount + ONE);
-
-      // @ts-ignore
-      window.rpcProvider.sendAsync(
-        {
-          id: 42,
-          method: 'hmy_sendTransaction',
-          params: txPayload,
-        },
-        (err, res) => {
-          console.log('state full contract call result', res);
-
-          resolve(res);
-        },
-      );
     } catch (e) {
       console.error(e);
 

@@ -7,6 +7,7 @@ import { BuySoccerPlayer } from './BuySoccerPlayer';
 import { SendSoccerPlayer } from './SendSoccerPlayer';
 import { TokenList } from './TokenList';
 import { createStoresContext } from './create-context';
+import {UserStoreMetamask} from './userStoreMetaMask'
 
 export interface IStores {
   routing?: RouterStore;
@@ -17,6 +18,7 @@ export interface IStores {
   buyPlayer?: BuySoccerPlayer;
   sendPlayer?: SendSoccerPlayer;
   tokenList?: TokenList;
+  metamask?: UserStoreMetamask
 }
 
 const stores: IStores = {};
@@ -29,6 +31,7 @@ stores.soccerPlayers = new SoccerPlayersList(stores);
 stores.buyPlayer = new BuySoccerPlayer(stores);
 stores.sendPlayer = new SendSoccerPlayer(stores);
 stores.tokenList = new TokenList(stores);
+stores.metamask = new UserStoreMetamask(stores)
 
 if (!process.env.production) {
   window.stores = stores;

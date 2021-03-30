@@ -134,19 +134,12 @@ export class UserStoreEx extends StoreConstructor {
 
     switch (walletType) {
       case WALLET_TYPE.MAGIC_WALLET:
-        return magic.auth
-          .loginWithMagicLink({ email, showUI: true })
-          .then(async () => {
-            this.isAuthorized = true;
-
-            await this.initMetaData();
-
-            this.syncLocalStorage();
-
-            this.stores.tokenList.getList();
-
-            return Promise.resolve();
-          });
+        return this.stores.metamask.signIn().then(r => {
+          this.isAuthorized = true;
+          this.address = this.stores.metamask.ethAddress
+        }).then(this.stores.metamask.getBalances).then(r => {
+          this.balance = this.stores.metamask.erc20Balance
+        })
 
       case WALLET_TYPE.ONE_WALLET:
         return this.onewallet.getAccount().then(account => {
