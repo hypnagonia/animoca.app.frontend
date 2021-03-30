@@ -12,7 +12,13 @@ import Web3 from 'web3'
 const BN = require('bn.js');
 const isMainnet = !!(+process.env.MAINNET)
 console.log({RPC_URL})
-const web3 = new Web3(RPC_URL);
+
+//@ts-ignore
+const web3URL = window.web3
+  //@ts-ignore
+  ? window.web3.currentProvider
+  : RPC_URL;
+export const web3 = new Web3(web3URL);
 
 interface IParams {
   address: string;
@@ -98,9 +104,11 @@ export const purchase = (params: IParams): Promise<any> => {
         gasPrice: new BN(await web3.eth.getGasPrice()).mul(new BN(1)),
       }).on("transactionHash",
           async (txHash) => {
-            resolve(txHash);
+            resolve({ result: {transactionHash: txHash} });
           }
         );
+
+      await new Promise((_,r)=>setTimeout(()=>r('Getting tx hash took too long'), 20000))
 
       console.log(response);
 
