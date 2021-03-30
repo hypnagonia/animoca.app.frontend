@@ -405,7 +405,7 @@ function DracoLocalScene() {
           <SuzanneWithLocal />
           </React.Suspense>
           {/*@ts-ignore*/}
-          <OrbitControls />
+          <OrbitControls   enableZoom={false} />
         </Canvas>
   );
 }
