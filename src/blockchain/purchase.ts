@@ -72,6 +72,9 @@ export const purchase = (params: IParams): Promise<any> => {
     try {
       const addrHex = hmy.crypto.getAddress(params.address).checksum;
 
+      // @ts-ignore
+      const accounts = await ethereum.enable();
+
       // connectToOneWallet(contractToken.wallet, params.address, reject);
 
       const recipient = addrHex;
