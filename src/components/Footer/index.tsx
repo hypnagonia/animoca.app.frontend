@@ -12,7 +12,7 @@ export const Footer = props => (
     {...props}
   >
     <a href='https://harmony.one/' target='_blank'>
-      <img  src='/social/harmony-white.png' style={{width: 36, height: 36, marginRight: 30}}/>
+      <img  src='/social/harmony-white.png' style={{width: 46, height: 46, marginRight: 24, marginTop: -6}}/>
     </a>
 
     <a href='https://harmony.one/twitter' target='_blank'>

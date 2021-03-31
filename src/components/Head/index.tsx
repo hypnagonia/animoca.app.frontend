@@ -27,13 +27,11 @@ export const MainLogo = styled.img`
   width: auto;
   height: 62px;
   color: black;
-  background-color: white;
 `;
 
 export const MainLogoSmall = styled.img`
   width: auto;
   height: 52px;
-  background-color: white;
 `;
 
 export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
@@ -168,7 +166,8 @@ export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
               onClick={() => history.push('/')}
             >
               <MainLogo src="atari-logo.png" style={{marginRight: 20}}/>
-              <MainLogo src="qlogo.png" />
+              <MainLogo src="qlogo.png" style={{marginRight: 8}}/>
+              <MainLogo src="harmony-logo-word.png"/>
             </Box>
             <Box>
               {/*<Title size="small" color="BlackTxt" bold>*/}

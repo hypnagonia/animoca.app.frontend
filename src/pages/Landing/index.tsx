@@ -141,7 +141,7 @@ export const Landing = observer(() => {
                   color="white"
                 >
                   <span style={{color: 'white'}}>Own a Piece<br /></span>
-                  <span style={{color: 'white'}}> of History</span>
+                  <span style={{color: 'white'}}> of History Today</span>
                 </Title>
 
                 <Box
@@ -168,7 +168,7 @@ export const Landing = observer(() => {
                         display: !isSmallMobile ? 'none' : 'block',
                       }}
                     >
-                      Own ONE Piece of History
+                      Own a Piece of History
                     </b>
 
                     <b
@@ -240,11 +240,11 @@ export const Landing = observer(() => {
 
         <Box className={styles.howToBuy}>
           <Box
-            pad={{top: '120px', bottom: '50px', horizontal: 'large'}}
+            pad={{top: '50px', bottom: '50px', horizontal: 'large'}}
             className={styles.pageContent}
             direction="column"
             align="center"
-            style={{maxWidth: 1350}}
+            style={{maxWidth: 1350, backgroundColor: 'black'}}
           >
             <Title
               color="white"
@@ -327,8 +327,7 @@ export const Landing = observer(() => {
                     will be appear in your digital wallet.
                   </Text>
                 </div>
-                {/*<Button onClick={() => routing.push('/buy')}>Buy now</Button>*/}
-                <Button onClick={() => {}}>Buy now</Button>
+                <Button onClick={() => routing.push('/buy')}>Buy now</Button>
               </Box>
 
             </Box>
@@ -382,6 +381,9 @@ export const Landing = observer(() => {
           </Box>
         </Box>
       </Box>
+      <div style={{width: '100%', textAlign: 'center', color: 'white', backgroundColor: 'black'}}>
+      Own a Piece of History Today
+      </div>
       <Footer bg='black'/>
     </>
   );

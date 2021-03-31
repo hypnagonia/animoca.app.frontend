@@ -241,6 +241,7 @@ export class TokenList extends StoreConstructor {
 
             //@ts-ignore
             resolve();
+           // this.stores.routing.push('/my-cards')
           }, 2000);
 
 

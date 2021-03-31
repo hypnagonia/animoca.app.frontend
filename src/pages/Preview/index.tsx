@@ -15,6 +15,7 @@ export const Preview = observer(() => {
   const {actionModals, routing, tokenList} = useStores();
 
   useEffect(() => {
+
     if (tokenList.hasNewCards) {
       let scale = 'scale(0.8)',
         width = '1000px';

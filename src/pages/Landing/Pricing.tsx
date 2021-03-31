@@ -88,7 +88,7 @@ const Preview = ({ buyBtn = null }) => {
       direction="column"
       width="400px"
       gap="20px"
-      style={{ background: "#0D1C2B", borderRadius: 12, flexGrow: 1 }}
+      style={{ background: "black", borderRadius: 12, flexGrow: 1 }}
       pad={isSmallMobile ? "20px" : "xlarge"}
       margin={{ top: isSmallMobile ? "" : "medium", right: "medium" }}
     >
@@ -102,7 +102,7 @@ const Preview = ({ buyBtn = null }) => {
         Get your hands on ONE of only 100 NFTs.
         The Centipede series, created by the legendary Dona Bailey,
         carry a special spirit and set the industry standard for decades.
-        Own ONE piece of history today.
+        Own a piece of history today.
       </Text>
 
       <Box direction="row">
@@ -151,7 +151,7 @@ export class PricingBase extends React.Component<IStores> {
   formRef: MobxForm;
 
   buyHandler = async () => {
-    const { user, actionModals, tokenList } = this.props;
+    const { user, actionModals, tokenList, routing } = this.props;
 
     if (!user.isAuthorized) {
       await actionModals.open(SignIn, {
@@ -188,7 +188,9 @@ export class PricingBase extends React.Component<IStores> {
         width: "1000px",
         showOther: true,
         onApply: () => this.props.tokenList.buyLootBox(),
-        onClose: () => tokenList.clear()
+        onClose: () => {
+          tokenList.clear()
+        }
       });
     });
   };
@@ -231,12 +233,12 @@ export class PricingBase extends React.Component<IStores> {
       >
         <Preview buyBtn={isLandingPage ? buyBtn : null} />
 
-
+        {/*0D1C2B*/}
         {!isLandingPage && <Box
             direction="column"
             width="400px"
             justify="center"
-            style={{ background: "#0D1C2B", borderRadius: 12, height: 400, marginTop: 24 }}
+            style={{ background: "black", borderRadius: 12, height: 400, marginTop: 24 }}
         >
           <Form
               ref={ref => (this.formRef = ref)}

@@ -11,8 +11,8 @@
     "test:watch": "jest --watch",
     "test:debug": "jest --config=jest.config.debug.js",
     "version": "echo $npm_package_version",
-    "deploy-mainnet": "npm run build && firebase deploy --only hosting:animoca",
-    "deploy-testnet": "npm run builddev && firebase deploy --only hosting:animoca-testnet"
+    "deploy-mainnet": "npm run build && firebase deploy --only hosting:atari-mainnet",
+    "deploy-testnet": "npm run builddev && firebase deploy --only hosting:atari-nft"
   },
   "repository": {
     "type": "git",
