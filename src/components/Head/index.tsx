@@ -165,9 +165,9 @@ export const Head: React.FC<IStyledChildrenProps<BoxProps>> = withTheme(
               margin={{ right: 'small' }}
               onClick={() => history.push('/')}
             >
-              <MainLogo src="atari-logo.png" style={{marginRight: 20}}/>
-              <MainLogo src="qlogo.png" style={{marginRight: 8}}/>
-              <MainLogo src="harmony-logo-word.png"/>
+              <MainLogoSmall src="atari-logo.png" style={{marginRight: 20}}/>
+              <MainLogoSmall src="qlogo.png" style={{marginRight: 8}}/>
+              <MainLogoSmall src="harmony-logo-word.png"/>
             </Box>
             <Box>
               {/*<Title size="small" color="BlackTxt" bold>*/}

@@ -1,5 +1,12 @@
 import { contractToken, hmy, options } from './sdk';
 
+
+export const getTotalSupply = async () => {
+  let totalSupply = (await contractToken.methods.totalSupply().call(options)).toString();
+  console.log({totalSupply})
+  return totalSupply
+}
+
 export const getTokens = (address): Promise<any[]> => {
   return new Promise(async (resolve, reject) => {
     try {

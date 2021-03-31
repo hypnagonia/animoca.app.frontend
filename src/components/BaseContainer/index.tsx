@@ -25,7 +25,7 @@ export const BaseContainer: React.FC<IStyledChildrenProps<
             top: 0,
             width: '100vw',
             overflow: 'hidden',
-            backgroundColor: 'white'
+            // backgroundColor: 'white'
             // backgroundColor: palette.Basic100,
           }}
         >

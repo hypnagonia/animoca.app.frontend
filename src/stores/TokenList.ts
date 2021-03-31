@@ -40,6 +40,7 @@ export class TokenList extends StoreConstructor {
   @observable public actionStatus: statusFetching = "init";
   @observable public error: string = "";
   @observable public txId: string = "";
+  @observable public totalSupply: string|null = null
 
   constructor(stores: IStores) {
     super(stores);
@@ -48,6 +49,7 @@ export class TokenList extends StoreConstructor {
       if (this.stores.user.address) {
         console.log("autorun");
         this.getList();
+        this.getTotalSupply()
         this.formData.address = this.stores.user.address;
       }
       /* if (!this.stores.user.address && this.list.length) {
@@ -69,7 +71,7 @@ export class TokenList extends StoreConstructor {
   @observable formData = this.defaultDormData;
 
   boxes = [
-    { id: "3", total: 100, allow: 2, price: 100 }
+    { id: "3", total: 100, allow: 2, price: 1000 }
     // { id: '2', total: 60, allow: 20, price: 200 },
     // { id: '3', total: 25, allow: 5, price: 300 },
     // { id: '4', total: 5, allow: 5, price: 400 },
@@ -134,6 +136,12 @@ export class TokenList extends StoreConstructor {
       .forEach(e => s.add(e));
 
     return s.size > 1;
+  }
+
+  @action.bound
+  getTotalSupply = async () => {
+    console.log('heyyy')
+    this.totalSupply = await blockchain.getTotalSupply()
   }
 
   @action.bound
@@ -238,7 +246,7 @@ export class TokenList extends StoreConstructor {
 
           setTimeout(async () => {
             await this.getList();
-
+            await this.getTotalSupply()
             //@ts-ignore
             resolve();
            // this.stores.routing.push('/my-cards')

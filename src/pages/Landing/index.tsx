@@ -37,11 +37,11 @@ export const Landing = observer(() => {
 
   const isMobile = useMediaQuery({query: '(max-width: 1000px)'});
   const isSmallMobile = useMediaQuery({query: '(max-width: 600px)'});
-
+  const totalSupply = tokenList.totalSupply
+  console.log({totalSupply}, 'Landing')
   useEffect(() => {
-    // soccerPlayers.setMaxDisplay(20);
-    // soccerPlayers.getList();
-  }, []);
+    tokenList.getTotalSupply();
+  }, [tokenList]);
 
   const signIn = useCallback(() => {
     if (!user.isAuthorized) {
@@ -144,7 +144,7 @@ export const Landing = observer(() => {
                   <span style={{color: 'white'}}> of History Today</span>
                 </Title>
 
-                <Box
+                {(!isMobile && !isSmallMobile) &&  <Box
                   direction="column"
                   pad="large"
                   gap="22px"
@@ -193,11 +193,8 @@ export const Landing = observer(() => {
                   <Button
                     style={{
                       width: '100%',
-                      height: '70px',
                       alignItems: 'center',
-                      fontWeight: 500,
-                      fontSize: 30,
-                      marginTop: 215,
+                      marginTop: 205,
                     }}
 
                     onClick={() => {
@@ -206,7 +203,8 @@ export const Landing = observer(() => {
                   >
                     Buy now
                   </Button>
-                </Box>
+                  {totalSupply && <div style={{textAlign: 'center',width: '100%', marginTop: '-5px', color: 'white'}}>{100 - +totalSupply}/100 Left</div>}
+                </Box>}
 
               </Box>
 
@@ -216,8 +214,8 @@ export const Landing = observer(() => {
                 justify="end"
                 style={{
                   position: isMobile ? 'relative' : 'absolute',
-                  bottom: isMobile ? '-20px' : '40px',
-                  right: isMobile ? '' : '-40px',
+                  bottom: isMobile ? '-60px' : '40px',
+                  right: isMobile ? '' : '0px',
                 }}
               >
                 <a href="https://apps.apple.com/us/app/quidd-digital-collectibles/id1063166978">
@@ -337,12 +335,28 @@ export const Landing = observer(() => {
 
 
         <Box className={styles.needToBuy}>
+
+<div style={{width:'100%',textAlign: 'center', marginTop: '40px'}}>
+          <Title
+            color="white"
+            style={{
+              fontWeight: 600,
+              fontSize: 36,
+              marginBottom: 20,
+            }}
+          >
+            Introducing the Atari Capsule Collection
+          </Title>
+</div>
+
           <Box
-            pad={{top: '60px', bottom: '60px'}}
+            pad={{top: '40px', bottom: '60px'}}
             direction="row"
             align="center"
           >
-           {/* <iframe width={isMobile ? "400" : "800"} height={isMobile ? "300" : "500"} src="https://vimeo.com/529552991/2cd175530c" frameBorder="0"
+
+
+            {/* <iframe width={isMobile ? "400" : "800"} height={isMobile ? "300" : "500"} src="https://vimeo.com/529552991/2cd175530c" frameBorder="0"
                     style={{margin: 'auto'}}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen></iframe>*/}
@@ -358,8 +372,8 @@ export const Landing = observer(() => {
         <Box className={styles.pricing}>
           <Box
             pad={{
-              top: isSmallMobile ? '20px' : '20px',
-              bottom: isSmallMobile ? '10px' : '20px',
+              top: isSmallMobile ? '20px' : '0px',
+              bottom: isSmallMobile ? '10px' : '0px',
             }}
             // className={styles.pageContent}
             direction="column"

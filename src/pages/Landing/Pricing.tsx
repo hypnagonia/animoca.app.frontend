@@ -79,7 +79,7 @@ const DataItemLarge = (props: { text: any; label: string }) => {
   );
 };
 
-const Preview = ({ buyBtn = null }) => {
+const Preview = ({ buyBtn = null, isLandingPage = false }) => {
   const isSmallMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const { tokenList } = useStores();
 
@@ -90,9 +90,23 @@ const Preview = ({ buyBtn = null }) => {
       gap="20px"
       style={{ background: "black", borderRadius: 12, flexGrow: 1 }}
       pad={isSmallMobile ? "20px" : "xlarge"}
-      margin={{ top: isSmallMobile ? "" : "medium", right: "medium" }}
+      margin={{ top: isSmallMobile ? "" : "medium", right: isLandingPage ? "" : "medium" }}
     >
-      <Title color="white">Limited Edition</Title>
+
+      <div style={{width:'100%',textAlign: 'center', marginTop: '0px'}}>
+        <Title
+          color="white"
+          style={{
+            fontWeight: 600,
+            fontSize: 36,
+            marginBottom: 20,
+          }}
+        >
+          Limited Edition
+        </Title>
+      </div>
+
+      <div style={{width:'100%',textAlign: 'center', marginTop: '0px'}}>
       <Text color="white">
         {/* Each chest costs 1000 ONE and contains 2400 gems,
         730 VIP points and a random NFT collectible card
@@ -104,6 +118,7 @@ const Preview = ({ buyBtn = null }) => {
         carry a special spirit and set the industry standard for decades.
         Own a piece of history today.
       </Text>
+      </div>
 
       <Box direction="row">
       {/*  <Box direction="column" style={{ minWidth: 132, maxWidth: 132, maxHeight: 140 }}>
@@ -204,10 +219,7 @@ export class PricingBase extends React.Component<IStores> {
 
     const buyBtn = <Button
       disabled={user.status !== "success"}
-      size="xlarge"
       style={{
-        fontSize: 40,
-        padding: 30,
         marginTop: 20,
         cursor: "pointer"
       }}
@@ -220,7 +232,7 @@ export class PricingBase extends React.Component<IStores> {
         this.buyHandler();
       }}
     >
-      Buy now
+      Buy Now
     </Button>;
 
     return (
@@ -231,7 +243,7 @@ export class PricingBase extends React.Component<IStores> {
         justify="between"
         fill={true}
       >
-        <Preview buyBtn={isLandingPage ? buyBtn : null} />
+        <Preview buyBtn={isLandingPage ? buyBtn : null} isLandingPage={isLandingPage} />
 
         {/*0D1C2B*/}
         {!isLandingPage && <Box
